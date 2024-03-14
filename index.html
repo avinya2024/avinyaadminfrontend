@@ -57,9 +57,10 @@
             })
             .then(data => {
                 const registrationBody = document.getElementById('registrationBody');
-                data.forEach(item => {
+                data.forEach((item,index) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
+                        <td>${index+1}</td>
                         <td>${item.teamName}</td>
                         <td>${item.teamMembers}</td>
                         <td>${item.teamLeaderName}</td>
