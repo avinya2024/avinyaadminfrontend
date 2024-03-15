@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <h2>Registration Data</h2>
+    <h2>Registration Data From College</h2>
     <table id="registrationTable">
         <thead>
             <tr>
@@ -52,6 +52,33 @@
         <tbody id="registrationBody">
             <!-- Data will be populated dynamically -->
         </tbody>
+        <table id="registrationTable2">
+        <h2>Registrations Out of the College</h2>
+        <thead>
+            <tr>
+                <th>Sr NO.</th>
+                <th>Team Name</th>
+                <th>Team Members</th>
+                <th>Team Leader Name</th>
+                <th>Team Leader Phone</th>
+                <th>Team Leader Email</th>
+                <th>Member 2 Name</th>
+                <th>Member 2 Email</th>
+                <th>Member 3 Name</th>
+                <th>Member 3 Email</th>
+                <th>Department</th>
+                <th>College</th>
+                <th>Hackathon</th>
+                <th>Exhibition</th>
+                <th>Tech Expert</th>
+                <th>Non-tech Expert</th>
+                <th>Paid Amount</th>
+                <th>Screenshot</th>
+            </tr>
+        </thead>
+        <tbody id="registrationBodyOutofCollege">
+            <!-- Data will be populated dynamically -->
+        </tbody>
     </table>
 
     <script>
@@ -62,10 +89,12 @@
             })
             .then(data => {
                 const registrationBody = document.getElementById('registrationBody');
+                const registrationBody2 = document.getElementById('registrationBodyOutofCollege');
+                let i1=0,i2 = 0;
                 data.forEach((item,index) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${index+1}</td>
+                        <td>${item.college==="JSPM's RSCOE"?(i2+1):(i1+1)}</td>
                         <td>${item.teamName}</td>
                         <td>${item.teamMembers}</td>
                         <td>${item.teamLeaderName}</td>
@@ -86,7 +115,13 @@
                             ${item.screenshot.map(base64 => `<img src="data:image/png;base64,${base64}" alt="screenshot">`).join('<br>')}
                         </td>
                     `;
-                    registrationBody.appendChild(row);
+                    if(item.college !== "JSPM's RSCOE"){
+                        registrationBody2.appendChild(row);
+                        i1++;
+                    }else{
+                        registrationBody.appendChild(row);
+                        i2++;
+                    }
                 });
             })
             .catch(error => console.error('Error:', error));
