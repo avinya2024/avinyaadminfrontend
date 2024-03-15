@@ -109,9 +109,6 @@
                         <td>${item.hackathon ? 'Yes' : 'No'}</td>
                         <td>${item.techexpert ? 'Yes' : 'No'}</td>
                         <td>${item.paidAmount}</td>
-                        <td>
-                            ${item.screenshot.map(base64 => `<img src="data:image/png;base64,${base64}" alt="screenshot">`).join('<br>')}
-                        </td>
                     `;
                     if(item.college !== "JSPM's RSCOE"){
                         registrationBody2.appendChild(row);
